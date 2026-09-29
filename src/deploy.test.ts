@@ -30,5 +30,13 @@ describe('BDD: GitHub Pages デプロイ環境設定検証 (GitHub Pages Deploym
     const content = fs.readFileSync(workflowPath, 'utf-8');
     expect(content).toContain('actions/deploy-pages');
     expect(content).toContain('actions/upload-pages-artifact');
+    // Lockfile cache should not block runner if lockfile is missing
+    expect(content).not.toContain("cache: 'npm'");
+    expect(content).toContain('npm install --legacy-peer-deps');
+  });
+
+  it('Given プロジェクトルート When ロックファイルを確認する Then package-lock.json が生成されている', () => {
+    const lockPath = path.resolve('package-lock.json');
+    expect(fs.existsSync(lockPath)).toBe(true);
   });
 });

@@ -4,6 +4,13 @@ All notable changes to the Girly Stylist (きらきらガーリースタイリ�
 
 ## [Unreleased]
 
+### Fixed - Cycle 7 (TDD/BDD)
+- Resolved GitHub Actions `Dependencies lock file is not found` error:
+  - Removed strict `cache: 'npm'` in `.github/workflows/deploy.yml` so runner does not crash when lock files are missing.
+  - Generated and tracked official `package-lock.json`.
+  - Added `--legacy-peer-deps` flag to `npm install` in CI workflow to prevent ERESOLVE conflicts with Vite & esbuild peer dependencies.
+  - Updated BDD deployment test suite (`src/deploy.test.ts`).
+
 ### Added - Cycle 6 (TDD/BDD)
 - Smartphone smooth vertical and horizontal scroll optimization:
   - Replaced restrictive viewport scale limitations in `index.html`.

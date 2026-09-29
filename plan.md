@@ -38,11 +38,13 @@ src/domain/
   - Cycle 5: UIコンポーネント＆ゲームループ結合
   - Cycle 6: GitHub Pages (github.io) デプロイ設定 (Actions & gh-pages)
   - Cycle 7: スマホ向け縦横スクロール＆タッチ操作最適化 (touch-pan-x / touch-pan-y)
+  - Cycle 8: GitHub Actions CIでのロックファイル不在エラー解消 (package-lock.json & --legacy-peer-deps)
   - 各サイクル毎にテスト実行・Gitコミット
 
 ## 4. GitHub Pages (github.io) デプロイ仕様
 - **ビルドパス**: `base: './'` による相対パス出力（リポジトリ名サブパスでも404を起こさない設計）
 - **CI/CD自動化**: `.github/workflows/deploy.yml`（main/masterへのプッシュで自動ビルド＆テスト＆Pages公開）
+- **CI安定化**: `actions/setup-node` のロックファイル依存を排除し、`package-lock.json` 生成および `npm install --legacy-peer-deps` によりCI環境での依存解決エラーを完全防止
 - **手動デプロイ**: `npm run deploy`（`gh-pages -d dist`）
 
 ## 5. スマホ・モバイル最適化仕様
