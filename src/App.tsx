@@ -18,6 +18,7 @@ import {
 } from './domain/services/ClientCatalog';
 import { evaluateHairArrangement } from './domain/services/Scorer';
 import { HairArrangementAggregate } from './domain/entities/Arrangement';
+import { StorageService } from './domain/services/StorageService';
 import { HairCanvas } from './components/HairCanvas';
 import { StylistToolbox } from './components/StylistToolbox';
 import { ClientRequestBanner } from './components/ClientRequestBanner';
@@ -38,18 +39,44 @@ import {
 
 export default function App() {
   const allClients = useMemo(() => getClientRequests(), []);
-  const [currentClient, setCurrentClient] = useState<ClientRequest>(() => allClients[0]);
-  const [gameMode, setGameMode] = useState<'request' | 'free'>('request');
-  const [freeHairLength, setFreeHairLength] = useState<HairLength>('medium');
-  const [currentHairColor, setCurrentHairColor] = useState<string>(() => allClients[0].hairColor);
+  
+  // Load saved session on initial mount so reload does not lose data
+  const initialSession = useMemo(() => StorageService.loadSession(), []);
+
+  const [currentClient, setCurrentClient] = useState<ClientRequest>(() => {
+    if (initialSession?.clientId) {
+      const saved = allClients.find(c => c.id === initialSession.clientId);
+      if (saved) return saved;
+    }
+    return allClients[0];
+  });
+
+  const [gameMode, setGameMode] = useState<'request' | 'free'>(() => {
+    return initialSession?.gameMode || 'request';
+  });
+
+  const [freeHairLength, setFreeHairLength] = useState<HairLength>(() => {
+    return initialSession?.freeHairLength || 'medium';
+  });
+
+  const [currentHairColor, setCurrentHairColor] = useState<string>(() => {
+    if (initialSession?.hairColor) return initialSession.hairColor;
+    return allClients[0].hairColor;
+  });
 
   // Styling aggregate & state
-  const [placedItems, setPlacedItems] = useState<PlacedHairItem[]>([]);
+  const [placedItems, setPlacedItems] = useState<PlacedHairItem[]>(() => {
+    return initialSession?.placedItems || [];
+  });
   const [history, setHistory] = useState<PlacedHairItem[][]>([]);
   const [selectedTool, setSelectedTool] = useState<HairItemDefinition | null>(null);
   const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
-  const [isTwinMode, setIsTwinMode] = useState(false);
-  const [showGuides, setShowGuides] = useState(false);
+  const [isTwinMode, setIsTwinMode] = useState<boolean>(() => {
+    return Boolean(initialSession?.isTwinMode);
+  });
+  const [showGuides, setShowGuides] = useState<boolean>(() => {
+    return Boolean(initialSession?.showGuides);
+  });
 
   // Modals state
   const [evaluationResult, setEvaluationResult] = useState<ScoreEvaluationResult | null>(null);
@@ -59,13 +86,26 @@ export default function App() {
 
   // Local storage for Album photos
   const [albumEntries, setAlbumEntries] = useState<SavedAlbumEntry[]>(() => {
-    try {
-      const stored = localStorage.getItem('girly_stylist_album');
-      return stored ? JSON.parse(stored) : [];
-    } catch {
-      return [];
-    }
+    return StorageService.loadAlbum();
   });
+
+  // Automatically persist session to localStorage on any state change so reload preserves state
+  useEffect(() => {
+    StorageService.saveSession({
+      clientId: currentClient.id,
+      gameMode,
+      freeHairLength,
+      placedItems,
+      hairColor: currentHairColor,
+      isTwinMode,
+      showGuides,
+    });
+  }, [currentClient.id, gameMode, freeHairLength, placedItems, currentHairColor, isTwinMode, showGuides]);
+
+  // Persist album whenever entries change
+  useEffect(() => {
+    StorageService.saveAlbum(albumEntries);
+  }, [albumEntries]);
 
   const activeHairLength = gameMode === 'request' ? currentClient.hairLength : freeHairLength;
 
@@ -195,11 +235,7 @@ export default function App() {
 
     const updated = [newEntry, ...albumEntries];
     setAlbumEntries(updated);
-    try {
-      localStorage.setItem('girly_stylist_album', JSON.stringify(updated));
-    } catch {
-      // Ignore
-    }
+    StorageService.saveAlbum(updated);
   };
 
   return (

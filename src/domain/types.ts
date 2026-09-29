@@ -50,6 +50,17 @@ export interface PlacedHairItem {
   isMirrored?: boolean;
 }
 
+export interface SavedAlbumEntry {
+  id: string;
+  clientName: string;
+  hairLength: string;
+  hairColor: string;
+  score: number;
+  stars: number;
+  stamp: string;
+  dateStr: string;
+}
+
 export interface ClientEvaluationRules {
   targetPartCategory?: HairPartCategory;
   secondaryPartCategory?: HairPartCategory;

@@ -4,6 +4,13 @@ All notable changes to the Girly Stylist (きらきらガーリースタイリ�
 
 ## [Unreleased]
 
+### Added - Cycle 8 (TDD/BDD)
+- Auto-save styling session state to localStorage (`StorageService`):
+  - Preserves placed hair items (buns, braids, ribbons, pins, flowers, tiaras) across page reloads and browser refreshes.
+  - Automatically restores selected client, hair color spray, game mode, hair length, and twin-mode settings on load.
+  - Robust exception handling and fallback for private browsing or disabled storage.
+  - BDD unit and integration test suites (`src/domain/services/StorageService.test.ts`, `src/sessionPersistence.test.ts`).
+
 ### Fixed - Cycle 7 (TDD/BDD)
 - Resolved GitHub Actions `Dependencies lock file is not found` error:
   - Removed strict `cache: 'npm'` in `.github/workflows/deploy.yml` so runner does not crash when lock files are missing.

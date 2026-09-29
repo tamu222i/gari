@@ -39,6 +39,7 @@ src/domain/
   - Cycle 6: GitHub Pages (github.io) デプロイ設定 (Actions & gh-pages)
   - Cycle 7: スマホ向け縦横スクロール＆タッチ操作最適化 (touch-pan-x / touch-pan-y)
   - Cycle 8: GitHub Actions CIでのロックファイル不在エラー解消 (package-lock.json & --legacy-peer-deps)
+  - Cycle 9: リロード対策 localStorage セッション永続化 (StorageService & 状態復元)
   - 各サイクル毎にテスト実行・Gitコミット
 
 ## 4. GitHub Pages (github.io) デプロイ仕様
@@ -51,5 +52,14 @@ src/domain/
 - **縦スクロール**: 全画面でキャンバス上のタッチがページスクロールを遮らないよう `touch-pan-y` を設定し、アイテムドラッグ中のみ `preventDefault` を適用。
 - **横スクロール**: カテゴリタブ・ヘアカラーパレット・おねがいバナーで `touch-pan-x overscroll-x-contain` を提供し、指でスワイプして一覧を閲覧可能。
 - **レスポンシブ余白**: スマホのナビゲーションバーやホームバーで操作ボタンが隠れないよう `pb-20` の安全マージンを確保。
+
+## 6. localStorage 自動保存・リロード復元仕様
+- **セッション保存 (`girly_stylist_session_v1`)**:
+  - 現在のお客さまID、ゲームモード、髪色、配置済みヘアパーツ・アクセサリー全アイテム（座標・スケール・回転）、ツインモード状態、ガイド表示状態を自動永続化。
+  - 画面を誤ってリロードしたりブラウザを閉じても前回のスタイリング途中から再開可能。
+- **写真アルバム保存 (`girly_stylist_album`)**:
+  - 完成した写真・スタンプ・星評価を端末にローカル保存。
+- **フォールバック**: プライベートブラウジングやストレージ破損時も安全にデフォルト値を返すフォールバック設計。
+
 
 
