@@ -1,0 +1,6 @@
+{
+  "name": "きらきらガーリースタイリスト",
+  "description": "おきゃくさまの髪の長さに合わせて、三つ編みやお団子、かわいいリボンでヘアアレンジするスタイリスト体験ゲーム！",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
