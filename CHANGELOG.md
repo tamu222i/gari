@@ -4,6 +4,14 @@ All notable changes to the Girly Stylist (きらきらガーリースタイリ�
 
 ## [Unreleased]
 
+### Added - Cycle 9 (TDD/BDD)
+- Full detail description display & tablet layout optimization:
+  - Removed `truncate` on part and accessory descriptions, rendering full explanation and recommendations without text truncation.
+  - Added dedicated "選択中パーツの詳細説明ボックス" (Selected Part Detail Box) with large emoji icon, full description, suitable hair lengths, and interactive placement hints.
+  - Redesigned toolbox navigation with 3 prominent main tabs (💇‍♀️ ヘアパーツ, 🎀 アクセサリー, 🎨 ヘアカラー) and sub-category pills for rapid category exploration.
+  - Optimized tablet layout (`md:grid-cols-12` for 768px - 1024px screens) so avatar canvas and toolbox sit side-by-side with sticky avatar positioning, eliminating unnecessary vertical scrolling on iPad.
+  - Added BDD verification test suite (`src/tabletLayoutAndDescription.test.ts`).
+
 ### Added - Cycle 8 (TDD/BDD)
 - Auto-save styling session state to localStorage (`StorageService`):
   - Preserves placed hair items (buns, braids, ribbons, pins, flowers, tiaras) across page reloads and browser refreshes.

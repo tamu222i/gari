@@ -40,6 +40,7 @@ src/domain/
   - Cycle 7: スマホ向け縦横スクロール＆タッチ操作最適化 (touch-pan-x / touch-pan-y)
   - Cycle 8: GitHub Actions CIでのロックファイル不在エラー解消 (package-lock.json & --legacy-peer-deps)
   - Cycle 9: リロード対策 localStorage セッション永続化 (StorageService & 状態復元)
+  - Cycle 10: パーツ詳細説明文の完全表示 ＆ タブレット向け2カラム/タブ表示最適化
   - 各サイクル毎にテスト実行・Gitコミット
 
 ## 4. GitHub Pages (github.io) デプロイ仕様

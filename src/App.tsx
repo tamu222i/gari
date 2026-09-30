@@ -340,10 +340,10 @@ export default function App() {
           onChangeFreeLength={setFreeHairLength}
         />
 
-        {/* Studio Layout (Canvas & Toolbox) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
-          {/* Hair Styling Canvas (Left/Center col-5) */}
-          <div className="lg:col-span-5 flex flex-col items-center">
+        {/* Studio Layout (Canvas & Toolbox) - Tablet (md: 768px+) & Desktop 2-column view */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 lg:gap-6 items-start">
+          {/* Hair Styling Canvas (Left col-5 on tablet & desktop) */}
+          <div className="md:col-span-5 flex flex-col items-center md:sticky md:top-20">
             <HairCanvas
               hairLength={activeHairLength}
               hairColor={currentHairColor}
@@ -361,12 +361,12 @@ export default function App() {
               onCanvasTapToPlace={handleCanvasTapToPlace}
             />
 
-            {/* Finish Action Banner right below canvas on mobile */}
-            <div className="w-full max-w-[420px] mt-4 flex items-center gap-2">
+            {/* Finish Action Banner right below canvas */}
+            <div className="w-full max-w-[420px] mt-3.5 flex items-center gap-2">
               <button
                 type="button"
                 onClick={handleFinish}
-                className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-pink-500 via-rose-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white font-black text-base shadow-xl shadow-pink-300 flex items-center justify-center gap-2 active:scale-95 transition-transform"
+                className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-pink-500 via-rose-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white font-black text-sm sm:text-base shadow-xl shadow-pink-300 flex items-center justify-center gap-2 active:scale-95 transition-transform"
               >
                 <Sparkles className="w-5 h-5" />
                 <span>アレンジかんせい！しんさする♡</span>
@@ -374,8 +374,8 @@ export default function App() {
             </div>
           </div>
 
-          {/* Stylist Toolbox Shelf (Right col-7) */}
-          <div className="lg:col-span-7 flex flex-col gap-3">
+          {/* Stylist Toolbox Shelf (Right col-7 on tablet & desktop) */}
+          <div className="md:col-span-7 flex flex-col gap-3">
             <StylistToolbox
               currentHairLength={activeHairLength}
               currentHairColor={currentHairColor}
