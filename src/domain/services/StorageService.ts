@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { HairLength, PlacedHairItem, SavedAlbumEntry } from '../types';
+import { HairLength, PlacedHairItem, SavedAlbumEntry, FashionState } from '../types';
 
 export const STORAGE_KEY_SESSION = 'girly_stylist_session_v1';
 export const STORAGE_KEY_ALBUM = 'girly_stylist_album';
@@ -16,6 +16,7 @@ export interface StylingSessionState {
   hairColor: string;
   isTwinMode: boolean;
   showGuides: boolean;
+  fashion?: FashionState;
 }
 
 export class StorageService {
@@ -51,6 +52,7 @@ export class StorageService {
         hairColor: typeof parsed.hairColor === 'string' ? parsed.hairColor : undefined,
         isTwinMode: Boolean(parsed.isTwinMode),
         showGuides: Boolean(parsed.showGuides),
+        fashion: typeof parsed.fashion === 'object' && parsed.fashion !== null ? parsed.fashion : undefined,
       };
     } catch (e) {
       console.warn('Failed to load styling session from localStorage:', e);

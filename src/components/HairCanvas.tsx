@@ -4,7 +4,7 @@
  */
 
 import React, { useRef, useState } from 'react';
-import { PlacedHairItem, HairLength, HairItemDefinition } from '../domain/types';
+import { PlacedHairItem, HairLength, HairItemDefinition, OutfitStyle, MakeupState } from '../domain/types';
 import { ClientGirlAvatar } from './ClientGirlAvatar';
 import { HairGraphicPart } from './HairGraphicPart';
 import { playCutePop, playSparkleSound } from '../utils/audio';
@@ -15,6 +15,8 @@ interface HairCanvasProps {
   hairColor: string;
   eyeColor?: string;
   outfitColor?: string;
+  outfitStyle?: OutfitStyle;
+  makeup?: MakeupState;
   mood?: 'excited' | 'smiling' | 'shy' | 'dreamy' | 'super_happy' | 'happy' | 'smile';
   placedItems: PlacedHairItem[];
   selectedItemId: string | null;
@@ -32,6 +34,8 @@ export const HairCanvas: React.FC<HairCanvasProps> = ({
   hairColor,
   eyeColor,
   outfitColor,
+  outfitStyle,
+  makeup,
   mood = 'smiling',
   placedItems,
   selectedItemId,
@@ -118,6 +122,8 @@ export const HairCanvas: React.FC<HairCanvasProps> = ({
           hairColor={hairColor}
           eyeColor={eyeColor}
           outfitColor={outfitColor}
+          outfitStyle={outfitStyle}
+          makeup={makeup}
           mood={mood}
           showSnapGuides={showGuides}
           onSnapPointClick={(x, y) => {

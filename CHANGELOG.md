@@ -4,6 +4,18 @@ All notable changes to the Girly Stylist (きらきらガーリースタイリ�
 
 ## [Unreleased]
 
+### Added - Cycle 10 (TDD/BDD)
+- Fashion Boutique (おしゃれ屋さん): Eye Color, Outfits, and Makeup customization:
+  - 8 Eye Colors (ショコラ、サファイア、ルビー、エメラルド、アメジスト、アンバー、ナイトブラック、アクア) with sparkle reflection gradients.
+  - 5 Outfit styles (プリンセスドレス、セーラーワンピ、ロリータブラウス、くま耳パーカー、キャミソールワンピ) and 8 outfit colors.
+  - Makeup suite:
+    - 5 Blush styles (ふんわり丸、ハート ❤️、お星さま ⭐、そばかす 🍓、なし) with 4 blush colors.
+    - 5 Lip colors with toggleable glossy shine effect (ぷるぷるグロスツヤ).
+    - 5 Eye shadow shades and 5 cute face stickers (ハート、スター、キラキラ、ちょうちょ).
+  - 4 major shop tabs (💇‍♀️ ヘアパーツ, 🎀 アクセサリー, 💄 メイク＆アイ, 👗 お洋服＆カラー).
+  - Session persistence integration for full fashion state.
+  - Added BDD test suite (`src/fashionBoutique.test.ts`).
+
 ### Added - Cycle 9 (TDD/BDD)
 - Full detail description display & tablet layout optimization:
   - Removed `truncate` on part and accessory descriptions, rendering full explanation and recommendations without text truncation.

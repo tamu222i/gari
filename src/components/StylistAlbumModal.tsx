@@ -6,17 +6,9 @@
 import React from 'react';
 import { Star, X, Sparkles, BookOpen } from 'lucide-react';
 import { playCutePop } from '../utils/audio';
+import { SavedAlbumEntry } from '../domain/types';
 
-export interface SavedAlbumEntry {
-  id: string;
-  clientName: string;
-  hairLength: string;
-  hairColor: string;
-  score: number;
-  stars: number;
-  stamp: string;
-  dateStr: string;
-}
+export type { SavedAlbumEntry };
 
 interface StylistAlbumModalProps {
   entries: SavedAlbumEntry[];

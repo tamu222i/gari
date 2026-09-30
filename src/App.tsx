@@ -10,6 +10,9 @@ import {
   PlacedHairItem,
   ClientRequest,
   ScoreEvaluationResult,
+  FashionState,
+  DEFAULT_MAKEUP,
+  DEFAULT_FASHION,
 } from './domain/types';
 import {
   getClientRequests,
@@ -64,6 +67,19 @@ export default function App() {
     return allClients[0].hairColor;
   });
 
+  // Fashion state: eye color, outfit style & color, makeup (blush, lips, eyeshadow, stickers)
+  const [fashion, setFashion] = useState<FashionState>(() => {
+    if (initialSession?.fashion) {
+      return initialSession.fashion;
+    }
+    return {
+      eyeColor: allClients[0].eyeColor || '#5D4037',
+      outfitStyle: 'princess',
+      outfitColor: allClients[0].outfitColor || '#F8BBD0',
+      makeup: DEFAULT_MAKEUP,
+    };
+  });
+
   // Styling aggregate & state
   const [placedItems, setPlacedItems] = useState<PlacedHairItem[]>(() => {
     return initialSession?.placedItems || [];
@@ -99,8 +115,9 @@ export default function App() {
       hairColor: currentHairColor,
       isTwinMode,
       showGuides,
+      fashion,
     });
-  }, [currentClient.id, gameMode, freeHairLength, placedItems, currentHairColor, isTwinMode, showGuides]);
+  }, [currentClient.id, gameMode, freeHairLength, placedItems, currentHairColor, isTwinMode, showGuides, fashion]);
 
   // Persist album whenever entries change
   useEffect(() => {
@@ -109,10 +126,15 @@ export default function App() {
 
   const activeHairLength = gameMode === 'request' ? currentClient.hairLength : freeHairLength;
 
-  // Sync hair color on client change in request mode
+  // Sync hair color & default fashion on client change in request mode
   const handleSelectClient = (client: ClientRequest) => {
     setCurrentClient(client);
     setCurrentHairColor(client.hairColor);
+    setFashion(prev => ({
+      ...prev,
+      eyeColor: client.eyeColor || prev.eyeColor,
+      outfitColor: client.outfitColor || prev.outfitColor,
+    }));
     setPlacedItems([]);
     setHistory([]);
     setSelectedTool(null);
@@ -231,6 +253,7 @@ export default function App() {
       stars: photoData.stars,
       stamp: photoData.stamp,
       dateStr: new Date().toLocaleDateString('ja-JP', { month: 'numeric', day: 'numeric' }),
+      fashion,
     };
 
     const updated = [newEntry, ...albumEntries];
@@ -347,8 +370,10 @@ export default function App() {
             <HairCanvas
               hairLength={activeHairLength}
               hairColor={currentHairColor}
-              eyeColor={currentClient.eyeColor}
-              outfitColor={currentClient.outfitColor}
+              eyeColor={fashion.eyeColor}
+              outfitColor={fashion.outfitColor}
+              outfitStyle={fashion.outfitStyle}
+              makeup={fashion.makeup}
               mood={evaluationResult ? evaluationResult.clientReaction : currentClient.avatarMood}
               placedItems={placedItems}
               selectedItemId={selectedItemId}
@@ -379,6 +404,7 @@ export default function App() {
             <StylistToolbox
               currentHairLength={activeHairLength}
               currentHairColor={currentHairColor}
+              fashion={fashion}
               selectedTool={selectedTool}
               isTwinMode={isTwinMode}
               showGuides={showGuides}
@@ -388,6 +414,7 @@ export default function App() {
               onUndo={handleUndo}
               onClear={handleClear}
               onChangeHairColor={setCurrentHairColor}
+              onChangeFashion={setFashion}
             />
 
             {/* Stylist Tip Card for 6yo */}

@@ -59,7 +59,46 @@ export interface SavedAlbumEntry {
   stars: number;
   stamp: string;
   dateStr: string;
+  fashion?: FashionState;
 }
+
+export type OutfitStyle = 'princess' | 'sailor' | 'frill' | 'parka' | 'ribbon_camisole';
+
+export type BlushStyle = 'round' | 'heart' | 'star' | 'freckles' | 'none';
+
+export type FaceStickerType = 'none' | 'heart' | 'star' | 'glitter' | 'butterfly';
+
+export interface MakeupState {
+  blushColor: string; // e.g. '#FF8A80' or 'none'
+  blushStyle: BlushStyle;
+  lipColor: string; // e.g. '#D81B60'
+  lipGloss: boolean;
+  eyeShadowColor: string; // e.g. '#F48FB1' or 'none'
+  faceSticker: FaceStickerType;
+}
+
+export interface FashionState {
+  eyeColor: string;
+  outfitStyle: OutfitStyle;
+  outfitColor: string;
+  makeup: MakeupState;
+}
+
+export const DEFAULT_MAKEUP: MakeupState = {
+  blushColor: '#FF8A80',
+  blushStyle: 'round',
+  lipColor: '#D81B60',
+  lipGloss: true,
+  eyeShadowColor: 'none',
+  faceSticker: 'none',
+};
+
+export const DEFAULT_FASHION: FashionState = {
+  eyeColor: '#5D4037',
+  outfitStyle: 'princess',
+  outfitColor: '#F8BBD0',
+  makeup: DEFAULT_MAKEUP,
+};
 
 export interface ClientEvaluationRules {
   targetPartCategory?: HairPartCategory;
