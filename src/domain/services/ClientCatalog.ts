@@ -124,6 +124,27 @@ export const CLIENT_REQUESTS: ClientRequest[] = [
     },
     avatarMood: 'shy',
   },
+  {
+    id: 'client_kirari',
+    clientName: 'きらりちゃん',
+    hairLength: 'medium',
+    hairColor: '#FF80AB', // Pop neon pink
+    eyeColor: '#00BCD4', // Sparkling aqua
+    outfitColor: '#FF4081', // Pop berry
+    speechText: 'げんきいっぱいなポップさと、キラキラかわいいガーリーをミックスしたアイドルスタイルにしてほしいな☆ 星ピンとツインテールでステージで一番かがやきたいの！',
+    nuanceLabel: 'げんきポップ＆キラキラガーリー',
+    targetKeywords: ['ツインテール', 'お星さまピン', 'キラキラリボン'],
+    rules: {
+      targetPartCategory: 'tail',
+      targetAccessoryCategory: 'pin',
+      secondaryAccessoryCategory: 'ribbon',
+      requireSymmetry: true,
+      idealPartCount: { min: 2, max: 2 },
+      idealAccessoryCount: { min: 2, max: 5 },
+      targetNuance: 'pop_girly',
+    },
+    avatarMood: 'excited',
+  },
 ];
 
 export function getClientRequests(): ClientRequest[] {

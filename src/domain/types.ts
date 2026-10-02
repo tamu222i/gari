@@ -13,6 +13,7 @@ export type NuanceType =
   | 'cute_fluffy'   // ふんわりキュート (おだんご、パステルリボン)
   | 'princess'      // おひめさま (みつあみ、ティアラ、パール)
   | 'pop_genki'     // ポップ＆げんき (ツインテール、星、カラフルピン)
+  | 'pop_girly'     // げんきポップ＆キラキラガーリー (弾むツインテール、星ピン、キラキラリボン)
   | 'cool_stylish'  // すずしげ＆おとなっぽ (サイドテール、お花、シンプル)
   | 'party';        // きらきらパーティー (ゴージャス、羽、リボン)
 
@@ -62,7 +63,7 @@ export interface SavedAlbumEntry {
   fashion?: FashionState;
 }
 
-export type OutfitStyle = 'princess' | 'sailor' | 'frill' | 'parka' | 'ribbon_camisole';
+export type OutfitStyle = 'princess' | 'sailor' | 'frill' | 'parka' | 'ribbon_camisole' | 'genki_pop';
 
 export type BlushStyle = 'round' | 'heart' | 'star' | 'freckles' | 'none';
 
@@ -104,6 +105,7 @@ export interface ClientEvaluationRules {
   targetPartCategory?: HairPartCategory;
   secondaryPartCategory?: HairPartCategory;
   targetAccessoryCategory?: AccessoryCategory;
+  secondaryAccessoryCategory?: AccessoryCategory;
   requireSymmetry?: boolean; // 左右対称 (ツインおだんご、ツインみつあみ、両サイドリボンなど)
   targetZone?: HairZone | HairZone[];
   idealPartCount?: { min: number; max: number };

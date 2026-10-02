@@ -4,6 +4,15 @@ All notable changes to the Girly Stylist (きらきらガーリースタイリ�
 
 ## [Unreleased]
 
+### Added - Cycle 11 (TDD/BDD)
+- Genki Pop × Kirakira Girly style combination:
+  - Added `genki_pop` (げんきポップアイドルワンピ) outfit style with neon star ribbons, pop-vest, and tiered ruffled tutu.
+  - Added new hair part `tail_pop_curly` (ポップカールツイン) with bouncy curl motion and star scrunchies.
+  - Added new accessories `pin_pop_candy` (キャンディポップピン 🍭) and `ribbon_pop_neon` (ポップスターリボン 🎀⭐).
+  - Added new client `きらりちゃん` with `pop_girly` nuance request.
+  - Enhanced `Scorer.ts` to reward the hybrid combination of energetic pop tails/pins and sparkling girly ribbons/accessories.
+  - Added BDD test suite (`src/genkiPopGirly.test.ts`).
+
 ### Added - Cycle 10 (TDD/BDD)
 - Fashion Boutique (おしゃれ屋さん): Eye Color, Outfits, and Makeup customization:
   - 8 Eye Colors (ショコラ、サファイア、ルビー、エメラルド、アメジスト、アンバー、ナイトブラック、アクア) with sparkle reflection gradients.

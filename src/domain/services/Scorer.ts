@@ -76,14 +76,21 @@ export function evaluateHairArrangement(
 
   if (rules.targetAccessoryCategory) {
     const matchingAccessories = accessories.filter(a => a.category === rules.targetAccessoryCategory);
-    if (matchingAccessories.length > 0) {
+    const matchingSecondary = rules.secondaryAccessoryCategory
+      ? accessories.filter(a => a.category === rules.secondaryAccessoryCategory)
+      : [];
+
+    if (matchingAccessories.length > 0 || matchingSecondary.length > 0) {
       accessoryScore = 25;
+      const matchedName = matchingAccessories.length > 0
+        ? getCategoryJapaneseName(rules.targetAccessoryCategory)
+        : getCategoryJapaneseName(rules.secondaryAccessoryCategory!);
       criteria.push({
         criterion: 'アクセサリー',
         score: 25,
         maxScore: 25,
         pass: true,
-        note: `だいすきな ${getCategoryJapaneseName(rules.targetAccessoryCategory)} がかわいい！`,
+        note: `だいすきな ${matchedName} がかわいい！`,
       });
     } else if (accessories.length > 0) {
       accessoryScore = 15;
@@ -197,6 +204,8 @@ export function evaluateHairArrangement(
       comment = 'すずしげで おとなっぽくて 最高におしゃれ☆ とってもお気に入りだよ！';
     } else if (rules.targetNuance === 'pop_genki') {
       comment = 'げんきいっぱい ポップでかわいすぎるーっ！ありがとう！';
+    } else if (rules.targetNuance === 'pop_girly') {
+      comment = 'げんきポップとキラキラガーリーが最高にマッチしてアイドルみたい♡ ありがとう！';
     } else {
       comment = `わぁぁっ！まさに「${client.nuanceLabel}」なヘアスタイル！まほうみたいに かわいい♡ だいすき！`;
     }

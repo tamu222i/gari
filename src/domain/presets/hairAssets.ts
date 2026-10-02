@@ -83,6 +83,14 @@ export const HAIR_PART_DEFINITIONS: HairItemDefinition[] = [
     thumbnail: 'tail_side',
     suitableLengths: ['medium', 'long'],
   },
+  {
+    id: 'tail_pop_curly',
+    name: 'ポップカールツイン',
+    category: 'tail',
+    description: 'ぴょんぴょん弾む ポップで元気なカールツインテール',
+    thumbnail: 'tail_pop',
+    suitableLengths: ['short', 'bob', 'medium', 'long'],
+  },
 
   // カール (curls)
   {
@@ -141,6 +149,15 @@ export const ACCESSORY_DEFINITIONS: HairItemDefinition[] = [
     thumbnail: 'ribbon_ruby',
     suitableLengths: ['short', 'bob', 'medium', 'long'],
   },
+  {
+    id: 'ribbon_pop_neon',
+    name: 'ポップスターリボン',
+    category: 'ribbon',
+    description: 'お星さまジュエルがついた元気なビビッドリボン',
+    defaultColor: '#FF4081',
+    thumbnail: 'ribbon_pop',
+    suitableLengths: ['short', 'bob', 'medium', 'long'],
+  },
 
   // ヘアピン・クリップ (pins)
   {
@@ -150,6 +167,15 @@ export const ACCESSORY_DEFINITIONS: HairItemDefinition[] = [
     description: 'おほしさまが キラッとひかるヘアピン',
     defaultColor: '#FFD54F',
     thumbnail: 'pin_star',
+    suitableLengths: ['short', 'bob', 'medium', 'long'],
+  },
+  {
+    id: 'pin_pop_candy',
+    name: 'キャンディポップピン',
+    category: 'pin',
+    description: 'カラフルなペロペロキャンディと星のキュートピン',
+    defaultColor: '#FF4081',
+    thumbnail: 'pin_candy',
     suitableLengths: ['short', 'bob', 'medium', 'long'],
   },
   {

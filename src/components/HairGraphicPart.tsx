@@ -212,6 +212,32 @@ export const HairGraphicPart: React.FC<HairGraphicPartProps> = ({
           </g>
         );
 
+      case 'tail_pop_curly':
+        return (
+          <g>
+            {/* Pop curly bouncy twintail */}
+            <path
+              d="M45,20 C75,18 92,38 88,65 C85,85 62,95 72,115 C78,128 65,138 52,135 C42,132 46,115 54,105 C64,92 56,75 48,55 C42,42 42,28 45,20 Z"
+              fill={color}
+              filter="brightness(0.92)"
+            />
+            <path
+              d="M50,22 C78,22 88,44 82,70 C76,88 65,96 70,112 C74,120 64,126 56,124"
+              fill="none"
+              stroke="#fff"
+              strokeOpacity="0.35"
+              strokeWidth="4.5"
+              strokeLinecap="round"
+            />
+            {/* Pop Star Scrunchie band */}
+            <circle cx="46" cy="22" r="9" fill="#FF4081" />
+            <polygon
+              points="46,16 48,20 53,21 49,24 50,29 46,26 42,29 43,24 39,21 44,20"
+              fill="#FFEB3B"
+            />
+          </g>
+        );
+
       // ===== カール (CURLS) =====
       case 'curl_wavy':
         return (
@@ -286,7 +312,61 @@ export const HairGraphicPart: React.FC<HairGraphicPartProps> = ({
         );
       }
 
+      case 'ribbon_pop_neon': {
+        const ribbonColor = item.color || '#FF4081';
+        return (
+          <g>
+            {/* Pop Big Neon Ribbon */}
+            <path
+              d="M50,48 C28,18 8,28 12,52 C16,72 38,65 50,48 Z"
+              fill={ribbonColor}
+              filter="brightness(0.96)"
+            />
+            <path d="M46,46 C30,26 18,34 20,48" stroke="#fff" strokeOpacity="0.45" strokeWidth="3" fill="none" />
+            <path
+              d="M50,48 C72,18 92,28 88,52 C84,72 62,65 50,48 Z"
+              fill={ribbonColor}
+            />
+            <path d="M54,46 C70,26 82,34 80,48" stroke="#fff" strokeOpacity="0.45" strokeWidth="3" fill="none" />
+            {/* Fluttering pop ribbon tails */}
+            <path d="M45,55 C38,80 25,98 16,106 C28,98 38,102 46,75 Z" fill={ribbonColor} filter="brightness(0.85)" />
+            <path d="M55,55 C62,80 75,98 84,106 C72,98 62,102 54,75 Z" fill={ribbonColor} filter="brightness(0.85)" />
+            {/* Sparkling Star Jewel at Center */}
+            <circle cx="50" cy="48" r="11" fill="#FFEB3B" stroke="#FBC02D" strokeWidth="1.5" />
+            <polygon
+              points="50,40 52,45 58,46 53,50 55,56 50,52 45,56 47,50 42,46 48,45"
+              fill="#FFFFFF"
+            />
+          </g>
+        );
+      }
+
       // ===== ピン (PINS) =====
+      case 'pin_pop_candy':
+        return (
+          <g>
+            {/* Hairpin clip back */}
+            <rect x="25" y="46" width="50" height="8" rx="4" fill="#90A4AE" opacity="0.8" transform="rotate(-15, 50, 50)" />
+            {/* Lollipop stick */}
+            <rect x="47" y="45" width="6" height="35" rx="3" fill="#FFFFFF" stroke="#CFD8DC" strokeWidth="1" transform="rotate(25, 50, 60)" />
+            {/* Swirl candy round */}
+            <circle cx="44" cy="38" r="20" fill="#FF4081" stroke="#F50057" strokeWidth="1.5" />
+            <path
+              d="M44,22 C52,22 60,30 60,38 C60,46 52,54 44,54 C36,54 28,46 28,38 C28,30 36,26 42,26 C48,26 52,32 52,38 C52,42 48,46 44,46 C40,46 36,42 36,38"
+              fill="none"
+              stroke="#FFFFFF"
+              strokeWidth="4"
+              strokeLinecap="round"
+            />
+            {/* Sparkling Star on candy */}
+            <polygon
+              points="56,26 58,30 63,31 59,34 60,39 56,36 52,39 53,34 49,31 54,30"
+              fill="#FFEB3B"
+              stroke="#F57F17"
+              strokeWidth="1"
+            />
+          </g>
+        );
       case 'pin_star_glitter':
         return (
           <g>

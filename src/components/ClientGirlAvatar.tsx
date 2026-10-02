@@ -256,6 +256,54 @@ export const ClientGirlAvatar: React.FC<ClientGirlAvatarProps> = ({
           </g>
         )}
 
+        {outfitStyle === 'genki_pop' && (
+          <g id="outfit-genki-pop">
+            {/* Pop Idol Dress base */}
+            <path
+              d="M175,320 C140,325 100,345 75,385 C65,400 60,440 60,500 L340,500 C340,440 335,400 325,385 C300,345 260,325 225,320 Z"
+              fill={outfitColor}
+            />
+            {/* Contrast pop idol vest / bodice */}
+            <path
+              d="M165,325 L145,430 L255,430 L235,325 Z"
+              fill="#FFFFFF"
+              stroke="#FF4081"
+              strokeWidth="2.5"
+            />
+            {/* Pop dynamic diagonal stripes on vest */}
+            <line x1="170" y1="365" x2="230" y2="365" stroke={outfitColor} strokeWidth="3" />
+            <line x1="165" y1="385" x2="235" y2="385" stroke="#FFEB3B" strokeWidth="3" />
+            <line x1="160" y1="405" x2="240" y2="405" stroke={outfitColor} strokeWidth="3" />
+            {/* Tiered Pop Ruffled Tutu skirt hem */}
+            <path
+              d="M80,445 C120,435 160,450 200,435 C240,450 280,435 320,445 L335,500 L65,500 Z"
+              fill="#FF4081"
+              filter="brightness(0.95)"
+            />
+            <path
+              d="M75,470 C115,460 155,475 200,460 C245,475 285,460 325,470 L335,500 L65,500 Z"
+              fill="#FFEB3B"
+              opacity="0.85"
+            />
+            {/* Pop Big Star Brooch with neon ribbons */}
+            <polygon
+              points="200,342 204,352 215,353 207,360 209,371 200,365 191,371 193,360 185,353 196,352"
+              fill="#FFD600"
+              stroke="#FF6F00"
+              strokeWidth="1.5"
+            />
+            <circle cx="200" cy="356" r="4" fill="#FFFFFF" />
+            {/* Pop Bow Ribbon under star */}
+            <ellipse cx="188" cy="358" rx="8" ry="4" fill="#00E5FF" transform="rotate(-15, 188, 358)" />
+            <ellipse cx="212" cy="358" rx="8" ry="4" fill="#00E5FF" transform="rotate(15, 212, 358)" />
+            {/* Shoulder Pop Badges */}
+            <circle cx="108" cy="380" r="10" fill="#FFEB3B" stroke="#FF4081" strokeWidth="2" />
+            <polygon points="108,375 110,378 114,379 111,382 112,386 108,384 104,386 105,382 102,379 106,378" fill="#FF4081" />
+            <circle cx="292" cy="380" r="10" fill="#FFEB3B" stroke="#FF4081" strokeWidth="2" />
+            <polygon points="292,375 294,378 298,379 295,382 296,386 292,384 288,386 289,382 286,379 290,378" fill="#FF4081" />
+          </g>
+        )}
+
         {/* 3. FACE & EARS */}
         {/* Ears */}
         <circle cx="118" cy="210" r="18" fill="url(#skinGrad)" />

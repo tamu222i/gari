@@ -102,6 +102,7 @@ export const StylistToolbox: React.FC<StylistToolboxProps> = ({
   // Outfit styles
   const outfitStyleOptions: { id: OutfitStyle; name: string; icon: string; desc: string }[] = [
     { id: 'princess', name: 'プリンセスドレス', icon: '👑', desc: 'オフショルダーと大きなリボンの王道お姫様ドレス' },
+    { id: 'genki_pop', name: 'げんきポップアイドルワンピ', icon: '🌟', desc: '星バッジとフリルが弾ける元気いっぱいなアイドルワンピ' },
     { id: 'sailor', name: 'セーラーワンピ', icon: '⚓', desc: '白襟とタイリボンがキュートなマリン風ワンピース' },
     { id: 'frill', name: 'ロリータブラウス', icon: '🎀', desc: 'フリルとアンティークブローチの華やかブラウス' },
     { id: 'parka', name: 'くま耳パーカー', icon: '🧸', desc: 'ポンポン紐とポケットがついたカジュアルガーリー' },
@@ -192,7 +193,14 @@ export const StylistToolbox: React.FC<StylistToolboxProps> = ({
     return [];
   }, [mainTab, subPartCategory, subAccCategory]);
 
-  const getItemEmoji = (category: ItemCategory) => {
+  const getItemEmoji = (itemOrCategory: HairItemDefinition | ItemCategory) => {
+    const category = typeof itemOrCategory === 'string' ? itemOrCategory : itemOrCategory.category;
+    const id = typeof itemOrCategory === 'object' ? itemOrCategory.id : '';
+
+    if (id === 'pin_pop_candy') return '🍭';
+    if (id === 'ribbon_pop_neon') return '🎀';
+    if (id === 'tail_pop_curly') return '🦄';
+
     switch (category) {
       case 'bun':
         return '🍡';
@@ -428,7 +436,7 @@ export const StylistToolbox: React.FC<StylistToolboxProps> = ({
           <div className="flex items-center justify-between gap-2 border-b border-pink-200/60 pb-2">
             <div className="flex items-center gap-2">
               <span className="text-2xl p-1 bg-white rounded-xl shadow-xs border border-pink-200">
-                {getItemEmoji(selectedTool.category)}
+                {getItemEmoji(selectedTool)}
               </span>
               <div>
                 <div className="flex items-center gap-2">
@@ -526,7 +534,7 @@ export const StylistToolbox: React.FC<StylistToolboxProps> = ({
               >
                 <div className="w-11 h-11 rounded-xl bg-pink-100/50 flex items-center justify-center p-1 shrink-0 border border-pink-200/60 shadow-inner">
                   <span className="text-2xl select-none">
-                    {getItemEmoji(item.category)}
+                    {getItemEmoji(item)}
                   </span>
                 </div>
 
